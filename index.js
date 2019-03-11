@@ -125,7 +125,7 @@ module.exports = function(args, callback, settings){
                 concurrentUp();
                 jwt.authorize(function(err, result){
                     concurrentDown();
-                    fs.writeFile(sessionFile, JSON.stringify(result));
+                    fs.writeFile(sessionFile, JSON.stringify(result), (err) => { if (err) { throw err; }});
                     authCallback.apply(this, arguments);
                 });
             });
